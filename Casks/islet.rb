@@ -15,8 +15,11 @@ cask "islet" do
 
   caveats do
     <<~EOS
-      Islet is ad-hoc signed. If macOS blocks the first launch, run:
-        xattr -dr com.apple.quarantine /Applications/Islet.app
+      Islet is ad-hoc signed. On first launch, right-click Islet in Applications
+      and choose Open.
+
+      If macOS still blocks it, run:
+        sudo xattr -dr com.apple.quarantine /Applications/Islet.app
     EOS
   end
 end
