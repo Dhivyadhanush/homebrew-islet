@@ -1,6 +1,6 @@
 cask "lost-island" do
-  version "0.7.5"
-  sha256 "2f503ee35b8570de6ae33163cda06c7450cce4dc9a99d984d19cd1d48e2618d9"
+  version "0.7.6"
+  sha256 "66666ef72c49c8f9bc8c8eb6978f77f723ee811e70480422e50675c1fd870a11"
 
   url "https://github.com/Dhivyadhanush/islet/releases/download/v#{version}/lost_Island-#{version}.dmg"
   name "lost_Island"
