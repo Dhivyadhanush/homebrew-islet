@@ -13,11 +13,6 @@ cask "lost-island" do
     "~/Library/Preferences/dev.dhanuz.islet.plist",
   ]
 
-  preflight do
-    legacy = "#{appdir}/Islet.app"
-    system_command "/bin/rm", args: ["-rf", legacy] if File.exist?(legacy)
-  end
-
   caveats do
     <<~EOS
       lost_Island is ad-hoc signed. On first launch, right-click lost_Island in
