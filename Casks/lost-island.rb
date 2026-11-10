@@ -9,17 +9,25 @@ cask "lost-island" do
 
   app "lost_Island.app"
 
+  # Ad-hoc signed, so Gatekeeper cannot verify it. macOS 27 refuses to run a
+  # quarantined copy ("Not Opened" offers to move it to the Trash), so clear
+  # the download flag after install.
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "/Applications/lost_Island.app"]
+  end
+
   zap trash: [
     "~/Library/Preferences/dev.dhanuz.islet.plist",
   ]
 
   caveats do
     <<~EOS
-      lost_Island is ad-hoc signed. On first launch, right-click lost_Island in
-      Applications and choose Open.
+      lost_Island is ad-hoc signed. The cask clears the download quarantine
+      flag after install, so it opens normally.
 
-      If macOS still blocks it, run:
-        sudo xattr -dr com.apple.quarantine /Applications/lost_Island.app
+      If an older copy is still blocked, use System Settings → Privacy &
+      Security → Open Anyway, or run:
+        xattr -dr com.apple.quarantine /Applications/lost_Island.app
     EOS
   end
 end
