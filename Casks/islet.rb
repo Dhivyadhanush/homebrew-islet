@@ -7,17 +7,24 @@ cask "islet" do
   desc "Minimal dynamic island for the MacBook notch"
   homepage "https://github.com/Dhivyadhanush/islet"
 
+  depends_on macos: :sonoma
+
   app "islet.app"
 
-  # Ad-hoc signed, so Gatekeeper cannot verify it. macOS refuses to run a
-  # quarantined copy ("Not Opened" offers to move it to the Trash), so clear
-  # the download flag after install.
+  # Ad-hoc signed releases need the download flag cleared. A notarized
+  # Developer ID build does not, but the command is harmless there.
   postflight_steps do
     run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "/Applications/islet.app"]
   end
 
+  uninstall quit: "dev.dhanuz.islet"
+
   zap trash: [
+    "~/Library/Application Support/islet",
+    "~/Library/Caches/dev.dhanuz.islet",
+    "~/Library/HTTPStorages/dev.dhanuz.islet",
     "~/Library/Preferences/dev.dhanuz.islet.plist",
+    "~/Library/Saved Application State/dev.dhanuz.islet.savedState",
   ]
 
   caveats do
