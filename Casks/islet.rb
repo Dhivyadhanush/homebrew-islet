@@ -1,6 +1,6 @@
 cask "islet" do
-  version "1.1.0"
-  sha256 "5346caf67d522770def5dc5e1f044272275de9eb27e6bf6cf41eae35fb047c86"
+  version "1.1.1"
+  sha256 "e23830d280154f31b7d524beaa09520f82ae23870d7685b6fc50201ec7578360"
 
   url "https://github.com/Dhivyadhanush/islet/releases/download/v#{version}/islet-#{version}.dmg"
   name "islet"
